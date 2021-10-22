@@ -20,7 +20,29 @@
 </head>
 
 <body>
-  <h1>Welcome to PHP MySQL OOP</h1>
+  <?php
+    //Get Employees
+    $result = $mysqli->query("SELECT * FROM employees");
+  ?>
+  <h1>Employees</h1>
+  <table width="500" cellpadding=5 cellspacing=5 border=1>
+    <tr>
+      <th>ID#</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Dept</th>
+      <th>Email</th>
+    </tr>
+    <?php while($row = $result->fetch_object()) : ?>
+    <tr>
+      <td><?php echo $row->id; ?></td>
+      <td><?php echo $row->first_name; ?></td>
+      <td><?php echo $row->last_name; ?></td>
+      <td><?php echo $row->department; ?></td>
+      <td><?php echo $row->email; ?></td>
+    </tr>
+    <?php endwhile; ?>
+  </table>
 </body>
 
 </html>
