@@ -43,6 +43,31 @@
     </tr>
     <?php endwhile; ?>
   </table>
+
+  <?php
+    //Get Products
+    $result = $mysqli->query(
+      "SELECT products.name, categories.name AS 'category', products.id AS 'prod_id'
+      FROM products
+      LEFT JOIN categories
+      ON products.category = categories.id"
+    );
+  ?>
+  <h2>Products</h2>
+  <table width="500" cellpadding=5 cellspacing=5 border=1>
+    <tr>
+      <th>ID#</th>
+      <th>Product</th>
+      <th>Category</th>
+    </tr>
+    <?php while ($row = $result->fetch_object()) : ?>
+    <tr>
+      <td><?php echo $row->prod_id; ?></td>
+      <td><?php echo $row->name; ?></td>
+      <td><?php echo $row->category; ?></td>
+    </tr>
+    <?php endwhile; ?>
+  </table>
 </body>
 
 </html>
